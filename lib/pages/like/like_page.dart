@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:smart_running_flutter/model/user.dart';
 import 'package:smart_running_flutter/pages/generate/generate_logic.dart';
 
 import 'like_logic.dart';
