@@ -37,11 +37,38 @@ class RequestClient {
     } catch (e) {
       var exception = ApiException.from(e);
       if (onError?.call(exception) != true) {
+        print(exception.message);
         throw exception;
       }
     }
   }
 
+  Future<T?> requestData<T>(
+    String url, {
+    String method = "GET",
+    Map<String, dynamic>? queryParameters,
+    data,
+    Map<String, dynamic>? headers,
+    bool Function(ApiException)? onError,
+  }) async {
+    try {
+      data = _convertRequestData(data);
+      Options options = Options()
+        ..method = method
+        ..headers = headers;
+
+      Response response = await _dio.request(url,
+          queryParameters: queryParameters, data: data, options: options);
+      return _responseData(response);
+    } catch (e) {
+      var exception = ApiException.from(e);
+      if (onError?.call(exception) != true) {
+        print(e.toString());
+        throw exception;
+      }
+    }
+    return null;
+  }
 
   _convertRequestData(data) {
     if (data != null) {
@@ -78,21 +105,24 @@ class RequestClient {
   }
 
   ///请求响应内容处理
-  T? _handleResponse<T>(Response response) {
+  ApiResponse<T>? _handleResponse<T>(Response response) {
     if (response.statusCode == 200) {
-      ApiResponse<T> apiResponse = ApiResponse<T>.fromJson(response.data);
-      return _handleBusinessResponse<T>(apiResponse);
+     return ApiResponse<T>.fromJson(response.data);
     } else {
       return null;
     }
   }
 
-  ///业务内容处理
-  T? _handleBusinessResponse<T>(ApiResponse<T> response) {
-    if (response.code == RequestConfig.successCode) {
-      return response.data;
-    } else {
-      return null;
+
+  T? _responseData<T>(Response response) {
+    if (response.statusCode == 200) {
+      ApiResponse<T> apiResponse = ApiResponse<T>.fromJson(response.data);
+      if (apiResponse.code == RequestConfig.successCode) {
+        return apiResponse.data;
+      } else {
+        throw BusinessException(apiResponse.code,apiResponse.msg);
+      }
     }
+    return null;
   }
 }

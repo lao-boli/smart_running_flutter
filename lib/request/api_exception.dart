@@ -36,7 +36,7 @@ class ApiException implements Exception {
             case 403:
               return UnauthorisedException(errCode!, "服务器拒绝执行");
             case 404:
-              return UnauthorisedException(errCode!, "无法连接服务器");
+              return UnauthorisedException(errCode!, "404 Not Found");
             case 405:
               return UnauthorisedException(errCode!, "请求方法被禁止");
             case 500:
@@ -71,6 +71,11 @@ class ApiException implements Exception {
       return apiException;
     }
   }
+}
+
+/// 业务错误
+class BusinessException extends ApiException {
+  BusinessException([int? code, String? message]) : super(code, message);
 }
 
 /// 请求错误
