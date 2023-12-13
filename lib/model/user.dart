@@ -10,9 +10,14 @@ class User {
 	int? roleId;
 	String? roleName;
 	String? salt;
-	String? unit;
-	int? unitId;
 	String? username;
+	String? name;
+	String? gender;
+	int? age;
+	double? height;
+	double? weight;
+	bool? athlete;
+	String? bracelet;
 
 	User();
 

@@ -23,17 +23,37 @@ User $UserFromJson(Map<String, dynamic> json) {
   if (salt != null) {
     user.salt = salt;
   }
-  final String? unit = jsonConvert.convert<String>(json['unit']);
-  if (unit != null) {
-    user.unit = unit;
-  }
-  final int? unitId = jsonConvert.convert<int>(json['unitId']);
-  if (unitId != null) {
-    user.unitId = unitId;
-  }
   final String? username = jsonConvert.convert<String>(json['username']);
   if (username != null) {
     user.username = username;
+  }
+  final String? name = jsonConvert.convert<String>(json['name']);
+  if (name != null) {
+    user.name = name;
+  }
+  final String? gender = jsonConvert.convert<String>(json['gender']);
+  if (gender != null) {
+    user.gender = gender;
+  }
+  final int? age = jsonConvert.convert<int>(json['age']);
+  if (age != null) {
+    user.age = age;
+  }
+  final double? height = jsonConvert.convert<double>(json['height']);
+  if (height != null) {
+    user.height = height;
+  }
+  final double? weight = jsonConvert.convert<double>(json['weight']);
+  if (weight != null) {
+    user.weight = weight;
+  }
+  final bool? athlete = jsonConvert.convert<bool>(json['athlete']);
+  if (athlete != null) {
+    user.athlete = athlete;
+  }
+  final String? bracelet = jsonConvert.convert<String>(json['bracelet']);
+  if (bracelet != null) {
+    user.bracelet = bracelet;
   }
   return user;
 }
@@ -45,9 +65,14 @@ Map<String, dynamic> $UserToJson(User entity) {
   data['roleId'] = entity.roleId;
   data['roleName'] = entity.roleName;
   data['salt'] = entity.salt;
-  data['unit'] = entity.unit;
-  data['unitId'] = entity.unitId;
   data['username'] = entity.username;
+  data['name'] = entity.name;
+  data['gender'] = entity.gender;
+  data['age'] = entity.age;
+  data['height'] = entity.height;
+  data['weight'] = entity.weight;
+  data['athlete'] = entity.athlete;
+  data['bracelet'] = entity.bracelet;
   return data;
 }
 
@@ -58,9 +83,14 @@ extension UserExtension on User {
     int? roleId,
     String? roleName,
     String? salt,
-    String? unit,
-    int? unitId,
     String? username,
+    String? name,
+    String? gender,
+    int? age,
+    double? height,
+    double? weight,
+    bool? athlete,
+    String? bracelet,
   }) {
     return User()
       ..id = id ?? this.id
@@ -68,8 +98,13 @@ extension UserExtension on User {
       ..roleId = roleId ?? this.roleId
       ..roleName = roleName ?? this.roleName
       ..salt = salt ?? this.salt
-      ..unit = unit ?? this.unit
-      ..unitId = unitId ?? this.unitId
-      ..username = username ?? this.username;
+      ..username = username ?? this.username
+      ..name = name ?? this.name
+      ..gender = gender ?? this.gender
+      ..age = age ?? this.age
+      ..height = height ?? this.height
+      ..weight = weight ?? this.weight
+      ..athlete = athlete ?? this.athlete
+      ..bracelet = bracelet ?? this.bracelet;
   }
 }
