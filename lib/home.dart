@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:smart_running_flutter/pages/generate/generate_page.dart';
-import 'package:smart_running_flutter/pages/like/like_page.dart';
+import 'package:race_flutter/pages/generate/generate_page.dart';
+import 'package:race_flutter/pages/like/like_page.dart';
 
 const int tabCount = 2;
 const int turnsToRotateRight = 1;

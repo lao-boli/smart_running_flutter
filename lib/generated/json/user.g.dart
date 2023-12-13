@@ -1,5 +1,5 @@
-import 'package:smart_running_flutter/generated/json/base/json_convert_content.dart';
-import 'package:smart_running_flutter/model/user.dart';
+import 'package:race_flutter/generated/json/base/json_convert_content.dart';
+import 'package:race_flutter/model/user.dart';
 
 User $UserFromJson(Map<String, dynamic> json) {
   final User user = User();

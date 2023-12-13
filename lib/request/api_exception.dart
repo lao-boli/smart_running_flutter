@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:smart_running_flutter/model/api_response.dart';
+import 'package:race_flutter/model/api_response.dart';
 
 class ApiException implements Exception {
   static const unknownException = "未知错误";

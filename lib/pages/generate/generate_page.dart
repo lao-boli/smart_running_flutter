@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:smart_running_flutter/components/big_card.dart';
+import 'package:race_flutter/components/big_card.dart';
 
 import 'generate_logic.dart';
 

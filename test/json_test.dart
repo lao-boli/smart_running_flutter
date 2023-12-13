@@ -8,8 +8,8 @@
 import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:smart_running_flutter/model/api_response.dart';
-import 'package:smart_running_flutter/model/user.dart';
+import 'package:race_flutter/model/api_response.dart';
+import 'package:race_flutter/model/user.dart';
 
 void main() {
   test('ApiResponse json test', () {

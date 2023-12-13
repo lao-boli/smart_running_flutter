@@ -1,7 +1,7 @@
-import 'package:smart_running_flutter/generated/json/base/json_field.dart';
-import 'package:smart_running_flutter/model/api_response.g.dart';
+import 'package:race_flutter/generated/json/base/json_field.dart';
+import 'package:race_flutter/model/api_response.g.dart';
 import 'dart:convert';
-export 'package:smart_running_flutter/model/api_response.g.dart';
+export 'package:race_flutter/model/api_response.g.dart';
 
 class ApiResponse<T> {
 	int? code;

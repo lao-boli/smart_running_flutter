@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:smart_running_flutter/request/api_exception.dart';
-import 'package:smart_running_flutter/model/api_response.dart';
+import 'package:race_flutter/request/api_exception.dart';
+import 'package:race_flutter/model/api_response.dart';
 
 import 'request_config.dart';
 

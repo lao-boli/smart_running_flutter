@@ -1,5 +1,5 @@
-import 'package:smart_running_flutter/generated/json/base/json_convert_content.dart';
-import 'package:smart_running_flutter/model/api_response.dart';
+import 'package:race_flutter/generated/json/base/json_convert_content.dart';
+import 'package:race_flutter/model/api_response.dart';
 
 ApiResponse<T> $ApiResponseFromJson<T>(Map<String, dynamic> json) {
   final ApiResponse<T> apiResponse = ApiResponse<T>();
