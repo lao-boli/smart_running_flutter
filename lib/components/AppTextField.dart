@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 
 class AppTextField extends StatelessWidget {
   final String labelText;
+  final String? suffixText;
+  final String? permanentSuffixText;
 
-  const AppTextField({super.key, required this.labelText});
+  const AppTextField({super.key, required this.labelText, this.suffixText, this.permanentSuffixText});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +15,12 @@ class AppTextField extends StatelessWidget {
         obscureText: false,
         decoration: InputDecoration(
           border: OutlineInputBorder(),
+          suffixIcon: permanentSuffixText != null ? Padding(
+            padding: EdgeInsets.all(10.0),
+            child: Text(permanentSuffixText!, style: TextStyle(color: Colors.grey)),
+          ) : null,
           labelText: labelText,
+
         ),
       ),
     );

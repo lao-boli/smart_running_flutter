@@ -42,7 +42,7 @@ class TrainDataSource extends AppDataSource {
         DataCell(Text('${data[index].age}')),
         DataCell(Text('${data[index].height}')),
         DataCell(Text('${data[index].weight}')),
-        DataCell(Text(data[index].athlete! ? '是':'否')),
+        DataCell(Text(data[index].athlete! ? '是' : '否')),
         DataCell(Text('${data[index].bracelet}')),
       ],
     );
@@ -84,8 +84,16 @@ class TrainPage extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: const AppTextField(
-                    labelText: '性别',
+                    labelText: '年龄',
                   ),
+                ),
+              ),
+              Expanded(
+                flex: 1,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child:
+                      AppDropdownMenu(hintText: '性别', list: <String>['男', '女']),
                 ),
               ),
               Expanded(
@@ -102,11 +110,50 @@ class TrainPage extends StatelessWidget {
           Row(
             children: [
               Expanded(
+                flex: 1,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: const AppTextField(
+                    permanentSuffixText: 'm',
+                    labelText: '身高',
+                  ),
+                ),
+              ),
+              Expanded(
+                flex: 1,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: const AppTextField(
+                    permanentSuffixText: 'kg',
+                    labelText: '体重',
+                  ),
+                ),
+              ),
+              Expanded(
+                flex: 1,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: AppDropdownMenu(
+                      width: 300, hintText: '是否运动员', list: <String>['是', '否']),
+                ),
+              ),
+            ],
+          ),
+          Row(
+            children: [
+              Expanded(
                 child: SizedBox(
                     width: 800,
-                    child: AppDataTable(
-                        labels: ['ID','姓名', '性别', '年龄','身高','体重','是否运动员','手环'],
-                        dataSource: TrainDataSource(buildTestData()))),
+                    child: AppDataTable(labels: [
+                      'ID',
+                      '姓名',
+                      '性别',
+                      '年龄',
+                      '身高',
+                      '体重',
+                      '是否运动员',
+                      '手环'
+                    ], dataSource: TrainDataSource(buildTestData()))),
               )
             ],
           ),
@@ -126,7 +173,7 @@ class TrainPage extends StatelessWidget {
       user.height = index * 1.0;
       user.weight = index * 1.0;
       user.athlete = index % 2 == 0;
-      user.bracelet = 'bracelet$index' ;
+      user.bracelet = 'bracelet$index';
       _data.add(user);
     });
     return _data;
