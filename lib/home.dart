@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:race_flutter/pages/generate/generate_page.dart';
+import 'package:race_flutter/pages/history/history_page.dart';
 import 'package:race_flutter/pages/like/like_page.dart';
 import 'package:race_flutter/pages/train/train_page.dart';
 
-const int tabCount = 3;
+const int tabCount = 4;
 const int turnsToRotateRight = 1;
 const int turnsToRotateLeft = 3;
 
@@ -22,7 +23,7 @@ class _MyHomePageState extends State<MyHomePage>
   String get restorationId => 'home_page';
 
   late TabController _tabController;
-  RestorableInt tabIndex = RestorableInt(0);
+  RestorableInt tabIndex = RestorableInt(3);
 
   @override
   void restoreState(RestorationBucket? oldBucket, bool initialRestore) {
@@ -78,14 +79,23 @@ class _MyHomePageState extends State<MyHomePage>
         tabController: _tabController,
         isVertical: isVertical,
       ),
+      _RallyTab(
+        theme: theme,
+        iconData: Icons.data_exploration,
+        title: '数据统计',
+        tabIndex: 3,
+        tabController: _tabController,
+        isVertical: isVertical,
+      ),
     ];
   }
 
   List<Widget> _buildTabViews() {
     return [
-      TrainPage(),
       GeneratePage(),
       LikePage(),
+      TrainPage(),
+      HistoryPage(),
     ];
   }
 
