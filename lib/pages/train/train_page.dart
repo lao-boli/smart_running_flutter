@@ -65,99 +65,202 @@ class TrainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          Row(
-            children: [
-              Expanded(
-                flex: 1,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: const AppTextField(
-                    labelText: '姓名',
+    return SingleChildScrollView(
+      child: Container(
+        child: Column(
+          children: [
+            Row(
+              children: [
+                const Spacer(),
+                Expanded(
+                  flex: 1,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 12,
+                          vertical: 12,
+                        ),
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).colorScheme.primary,
+                          borderRadius: BorderRadius.circular(16), // 设置圆角大小为 8
+                        ),
+                        child: Text(
+                          '添加测试人员',
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium!
+                              .copyWith(
+                                  color:
+                                      Theme.of(context).colorScheme.onPrimary,
+                                  fontSize: 20),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              ),
-              Expanded(
-                flex: 1,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: const AppTextField(
-                    labelText: '年龄',
+                Expanded(
+                  flex: 1,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.all(12),
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).colorScheme.primaryContainer,
+                          borderRadius: BorderRadius.circular(16), // 设置圆角大小为 8
+                        ),
+                        child: Align(
+                          alignment: Alignment.centerRight,
+                          child: Text(
+                            '当前已添加2人',
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium!
+                                .copyWith(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onPrimaryContainer,
+                                    fontSize: 20),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              ),
-              Expanded(
-                flex: 1,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child:
-                      AppDropdownMenu(hintText: '性别', list: <String>['男', '女']),
-                ),
-              ),
-              Expanded(
-                flex: 1,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: AppDropdownMenu(
-                      hintText: '手环',
-                      list: <String>['One', 'Two', 'Three', 'Four']),
-                ),
-              ),
-            ],
-          ),
-          Row(
-            children: [
-              Expanded(
-                flex: 1,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: const AppTextField(
-                    permanentSuffixText: 'm',
-                    labelText: '身高',
+              ],
+            ),
+            Row(
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: const AppTextField(
+                      labelText: '姓名',
+                    ),
                   ),
                 ),
-              ),
-              Expanded(
-                flex: 1,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: const AppTextField(
-                    permanentSuffixText: 'kg',
-                    labelText: '体重',
+                Expanded(
+                  flex: 1,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: const AppTextField(
+                      labelText: '年龄',
+                    ),
                   ),
                 ),
-              ),
-              Expanded(
-                flex: 1,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: AppDropdownMenu(
-                      width: 300, hintText: '是否运动员', list: <String>['是', '否']),
+                Expanded(
+                  flex: 1,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: AppDropdownMenu(
+                        hintText: '性别', list: <String>['男', '女']),
+                  ),
                 ),
-              ),
-            ],
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: SizedBox(
-                    width: 800,
-                    child: AppDataTable(labels: [
-                      'ID',
-                      '姓名',
-                      '性别',
-                      '年龄',
-                      '身高',
-                      '体重',
-                      '是否运动员',
-                      '手环'
-                    ], dataSource: TrainDataSource(buildTestData()))),
-              )
-            ],
-          ),
-        ],
+                Expanded(
+                  flex: 1,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: AppDropdownMenu(
+                        hintText: '手环',
+                        list: <String>['One', 'Two', 'Three', 'Four']),
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: const AppTextField(
+                      permanentSuffixText: 'm',
+                      labelText: '身高',
+                    ),
+                  ),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: const AppTextField(
+                      permanentSuffixText: 'kg',
+                      labelText: '体重',
+                    ),
+                  ),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: AppDropdownMenu(
+                        width: 300,
+                        hintText: '是否运动员',
+                        list: <String>['是', '否']),
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(
+                    right: 100,
+                    bottom: 10,
+                  ),
+                  child: ElevatedButton(
+                      style: ButtonStyle(
+                          minimumSize: MaterialStateProperty.all(
+                        Size(150, 60),
+
+                      )),
+                      onPressed: () => {},
+                      child: Text('再添一个',style: TextStyle(fontSize: 20),)),
+                )
+              ],
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: SizedBox(
+                      width: 800,
+                      child: AppDataTable(labels: [
+                        'ID',
+                        '姓名',
+                        '性别',
+                        '年龄',
+                        '身高',
+                        '体重',
+                        '是否运动员',
+                        '手环'
+                      ], dataSource: TrainDataSource(buildTestData()))),
+                )
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(
+                    right: 100,
+                    bottom: 10,
+                  ),
+                  child: ElevatedButton(
+                      style: ButtonStyle(
+                          minimumSize: MaterialStateProperty.all(
+                        Size(150, 60),
+                      )),
+                      onPressed: () => {},
+                      child: Text('开始测试',style: TextStyle(fontSize: 20),)),
+                )
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
