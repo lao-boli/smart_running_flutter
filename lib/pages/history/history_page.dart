@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:race_flutter/components/AppAutoComplete.dart';
 import 'package:race_flutter/components/AppDataTable.dart';
 import 'package:race_flutter/components/AppDropdownMenu.dart';
 import 'package:race_flutter/components/AppTextField.dart';
@@ -120,7 +121,7 @@ class HistoryPage extends StatelessWidget {
                   flex: 1,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: const AppTextField(
+                    child: AppAutocomplete(
                       labelText: '你想查谁的数据',
                     ),
                   ),
