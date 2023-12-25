@@ -11,7 +11,7 @@ ApiResponse<T> $ApiResponseFromJson<T>(Map<String, dynamic> json) {
   if (msg != null) {
     apiResponse.msg = msg;
   }
-  final T? data = jsonConvert.convert<T>(json['data']);
+  final T? data = JsonConvert.fromJsonAsT<T>(json['data']);
   if (data != null) {
     apiResponse.data = data;
   }
