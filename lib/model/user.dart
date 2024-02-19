@@ -18,6 +18,10 @@ class User {
 	double? weight;
 	bool? athlete;
 	String? bracelet;
+	String? unit;
+	String? unitId;
+	String? phone;
+
 
 	User();
 
