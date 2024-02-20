@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:race_flutter/components/AppFormDropdown.dart';
 import 'package:race_flutter/components/AppTextFormField.dart';
 
 import 'feedback_logic.dart';
@@ -22,10 +23,17 @@ class FeedbackPage extends StatelessWidget {
           Row(
             children: [
               Expanded(
+                flex: 1,
                   child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: AppTextFormField(labelText: '姓名'),
-              ))
+              )),
+              Expanded(
+                  flex: 1,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: AppFormDropdown<String>(list:['男','女'],hintText: '性别'),
+                  ))
             ],
           ),
           Row(
@@ -65,21 +73,32 @@ class FeedbackPage extends StatelessWidget {
                   ))
             ],
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16),
-            child: ElevatedButton(
-              onPressed: () {
-                // Validate returns true if the form is valid, or false otherwise.
-                if (_formKey.currentState!.validate()) {
-                  // If the form is valid, display a snackbar. In the real world,
-                  // you'd often call a server or save the information in a database.
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Processing Data')),
-                  );
-                }
-              },
-              child: const Text('Submit'),
-            ),
+          Row(
+
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                child: ElevatedButton(
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Processing Data')),
+                      );
+                    }
+                  },
+                  child: const Text('提交'),
+                ),
+              ),
+              Spacer(flex: 1,),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                child: ElevatedButton(
+                  onPressed: () {
+                  },
+                  child: const Text('取消'),
+                ),
+              ),
+            ],
           ),
         ],
       ),
