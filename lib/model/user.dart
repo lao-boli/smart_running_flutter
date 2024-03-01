@@ -18,7 +18,7 @@ class User {
 	double? weight;
 	bool? athlete;
 	String? bracelet;
-	String? unit;
+	String? unitName;
 	String? unitId;
 	String? phone;
 

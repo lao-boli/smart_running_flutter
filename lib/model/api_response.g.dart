@@ -1,5 +1,7 @@
 import 'package:race_flutter/generated/json/base/json_convert_content.dart';
 import 'package:race_flutter/model/api_response.dart';
+import 'package:race_flutter/model/api_response.g.dart';
+import 'package:race_flutter/model/page_info.g.dart';
 
 ApiResponse<T> $ApiResponseFromJson<T>(Map<String, dynamic> json) {
   final ApiResponse<T> apiResponse = ApiResponse<T>();
@@ -11,7 +13,16 @@ ApiResponse<T> $ApiResponseFromJson<T>(Map<String, dynamic> json) {
   if (msg != null) {
     apiResponse.msg = msg;
   }
-  final T? data = JsonConvert.fromJsonAsT<T>(json['data']);
+  T? data;
+  String type = T.toString();
+  print("type:$type");
+  if (json['data'] != null) {
+    if (type.startsWith("PageInfo<")) {
+      data = pageInfoFromJsonSingle<T>(json['data']);
+    } else {
+      data = jsonConvert.convert<T>(json['data']);
+    }
+  }
   if (data != null) {
     apiResponse.data = data;
   }

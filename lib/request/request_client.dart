@@ -17,7 +17,7 @@ class RequestClient {
         connectTimeout: RequestConfig.connectTimeout));
   }
 
-  Future<dynamic> request(
+  Future<dynamic> request<T>(
     String url, {
     String method = "GET",
     Map<String, dynamic>? queryParameters,
@@ -25,16 +25,17 @@ class RequestClient {
     Map<String, dynamic>? headers,
     bool Function(ApiException)? onError,
   }) async {
-    try {
-      data = _convertRequestData(data);
-      Options options = Options()
-        ..method = method
-        ..headers = headers;
+    data = _convertRequestData(data);
+    Options options = Options()
+      ..method = method
+      ..headers = headers;
 
-      Response response = await _dio.request(url,
-          queryParameters: queryParameters, data: data, options: options);
-      return _handleResponse(response);
+    Response response = await _dio.request(url,
+        queryParameters: queryParameters, data: data, options: options);
+    return _handleResponse<T>(response);
+    try {
     } catch (e) {
+      print(e);
       var exception = ApiException.from(e);
       if (onError?.call(exception) != true) {
         print(exception.message);
@@ -84,7 +85,7 @@ class RequestClient {
     bool showLoading = true,
     bool Function(ApiException)? onError,
   }) {
-    return request(url,
+    return request<T>(url,
         queryParameters: queryParameters, headers: headers, onError: onError);
   }
 

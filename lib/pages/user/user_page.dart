@@ -41,7 +41,7 @@ class UserDataSource extends AppDataSource {
         DataCell(Text('${data[index].name}')),
         DataCell(Text('${data[index].gender}')),
         DataCell(Text('${data[index].roleName}')),
-        DataCell(Text('${data[index].unit}')),
+        DataCell(Text('${data[index].unitName}')),
         DataCell(Text('${data[index].phone}')),
         DataCell(Row(
           children: [
@@ -80,6 +80,7 @@ class UserPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    logic.pageUser(1, 10);
     return SingleChildScrollView(
       child: Container(
         child: Column(
@@ -158,7 +159,8 @@ class UserPage extends StatelessWidget {
                       width: 800,
                       child: AppDataTable(
                           labels: ['ID', '姓名', '性别', '身份', '所属单位', '电话', '操作'],
-                          dataSource: UserDataSource(buildTestData()))),
+                          // dataSource: UserDataSource(buildTestData()))),
+                          dataSource: state.dataSource)),
                 )
               ],
             ),
@@ -181,7 +183,7 @@ class UserPage extends StatelessWidget {
       user.height = index * 1.0;
       user.weight = index * 1.0;
       user.athlete = index % 2 == 0;
-      user.unit = 'hqu';
+      user.unitName = 'hqu';
       user.phone = '1333333333333';
       _data.add(user);
     });

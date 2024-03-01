@@ -55,9 +55,9 @@ User $UserFromJson(Map<String, dynamic> json) {
   if (bracelet != null) {
     user.bracelet = bracelet;
   }
-  final String? unit = jsonConvert.convert<String>(json['unit']);
-  if (unit != null) {
-    user.unit = unit;
+  final String? unitName = jsonConvert.convert<String>(json['unitName']);
+  if (unitName != null) {
+    user.unitName = unitName;
   }
   final String? unitId = jsonConvert.convert<String>(json['unitId']);
   if (unitId != null) {
@@ -85,7 +85,7 @@ Map<String, dynamic> $UserToJson(User entity) {
   data['weight'] = entity.weight;
   data['athlete'] = entity.athlete;
   data['bracelet'] = entity.bracelet;
-  data['unit'] = entity.unit;
+  data['unitName'] = entity.unitName;
   data['unitId'] = entity.unitId;
   data['phone'] = entity.phone;
   return data;
@@ -106,7 +106,7 @@ extension UserExtension on User {
     double? weight,
     bool? athlete,
     String? bracelet,
-    String? unit,
+    String? unitName,
     String? unitId,
     String? phone,
   }) {
@@ -124,7 +124,7 @@ extension UserExtension on User {
       ..weight = weight ?? this.weight
       ..athlete = athlete ?? this.athlete
       ..bracelet = bracelet ?? this.bracelet
-      ..unit = unit ?? this.unit
+      ..unitName = unitName ?? this.unitName
       ..unitId = unitId ?? this.unitId
       ..phone = phone ?? this.phone;
   }

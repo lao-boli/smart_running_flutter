@@ -1,5 +1,6 @@
 import 'package:race_flutter/generated/json/base/json_convert_content.dart';
 import 'package:race_flutter/model/page_info.dart';
+import 'package:race_flutter/model/user.dart';
 
 PageInfo<T> $PageInfoFromJson<T>(Map<String, dynamic> json) {
   final PageInfo<T> pageInfo = PageInfo<T>();
@@ -24,7 +25,8 @@ PageInfo<T> $PageInfoFromJson<T>(Map<String, dynamic> json) {
   if (isLastPage != null) {
     pageInfo.isLastPage = isLastPage;
   }
-  final List<T>? list = (json['list'] as List<T>?)?.map((e) => e).toList();
+  // final List<T>? list = (json['list'] as List<T>?)?.map((e) => e).toList();
+  final List<T>? list = JsonConvert().convertList<T>(json['list'])?.cast<T>();
   if (list != null) {
     pageInfo.list = list;
   }
@@ -148,4 +150,15 @@ extension PageInfoExtension on PageInfo {
       ..startRow = startRow ?? this.startRow
       ..total = total ?? this.total;
   }
+}
+
+M? pageInfoFromJsonSingle<M>(Map<String, dynamic> json) {
+  String type = M.toString();
+  String genericType = type.substring(type.indexOf("<") + 1, type.length - 1);
+  print("genericType :$genericType");
+  if ((User).toString() == genericType) {
+    PageInfo<User> pagingData = PageInfo<User>.fromJson(json);
+    return pagingData as M;
+  }
+  return PageInfo.fromJson(json) as M;
 }
