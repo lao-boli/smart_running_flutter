@@ -4,6 +4,8 @@ import 'package:race_flutter/model/user.dart';
 
 class UserDataSource extends AppDataSource {
   List<User> data;
+  int? total;
+  int size = 10;
 
   UserDataSource(this.data);
 
@@ -30,18 +32,20 @@ class UserDataSource extends AppDataSource {
 
   @override
   DataRow? getRow(int index) {
-    if (index >= data.length) {
+    print('$index, $total, ${data.length}');
+    var i = index % size;
+    if (i >= data.length ) {
       return null;
     }
     return DataRow.byIndex(
-      index: index,
+      index: i,
       cells: [
-        DataCell(Text('${data[index].id}')),
-        DataCell(Text('${data[index].name}')),
-        DataCell(Text('${data[index].gender}')),
-        DataCell(Text('${data[index].roleName}')),
-        DataCell(Text('${data[index].unitName}')),
-        DataCell(Text('${data[index].phone}')),
+        DataCell(Text('${data[i].id}')),
+        DataCell(Text('${data[i].name}')),
+        DataCell(Text('${data[i].gender}')),
+        DataCell(Text('${data[i].roleName}')),
+        DataCell(Text('${data[i].unitName}')),
+        DataCell(Text('${data[i].phone}')),
         DataCell(Row(
           children: [
             ElevatedButton(
@@ -62,7 +66,9 @@ class UserDataSource extends AppDataSource {
     );
   }
 
-  int get rowCount => data.length;
+  int get rowCount {
+    return total ?? data.length;
+  }
 
   @override
   bool get isRowCountApproximate => false;

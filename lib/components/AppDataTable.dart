@@ -3,13 +3,10 @@ import 'package:flutter/material.dart';
 /// Flutter code sample for [PaginatedDataTable].
 
 class AppDataSource extends DataTableSource {
-
-
   void setData(List<List<Comparable<Object>>> rawData, int sortColumn,
       bool sortAscending) {
     notifyListeners();
   }
-
 
   static DataCell cellFor(Object data) {
     String value;
@@ -30,21 +27,25 @@ class AppDataSource extends DataTableSource {
 
   @override
   DataRow? getRow(int index) {
-    // TODO: implement getRow
     throw UnimplementedError();
   }
 
   @override
-  // TODO: implement rowCount
   int get rowCount => throw UnimplementedError();
 }
 
 class AppDataTable extends StatefulWidget {
   final List<String> labels;
   final AppDataSource dataSource;
+  final ValueChanged<int>? onPageChanged;
+  final ValueChanged<int?>? onRowsPerPageChanged;
 
   const AppDataTable(
-      {super.key, required this.labels, required this.dataSource});
+      {super.key,
+      required this.labels,
+      required this.dataSource,
+      this.onPageChanged,
+      this.onRowsPerPageChanged});
 
   @override
   State<AppDataTable> createState() => _AppDataTableState();
@@ -53,6 +54,8 @@ class AppDataTable extends StatefulWidget {
 class _AppDataTableState extends State<AppDataTable> {
   late AppDataSource dataSource;
   late List<String> labels;
+  late ValueChanged<int>? onPageChanged;
+  late ValueChanged<int?>? onRowsPerPageChanged;
 
   int _columnIndex = 0;
   bool _columnAscending = true;
@@ -62,6 +65,8 @@ class _AppDataTableState extends State<AppDataTable> {
     super.initState();
     labels = widget.labels;
     dataSource = widget.dataSource;
+    onPageChanged = widget.onPageChanged;
+    onRowsPerPageChanged = widget.onRowsPerPageChanged;
   }
 
   List<DataColumn> buildDataColumns(List<String> labels) {
@@ -83,6 +88,7 @@ class _AppDataTableState extends State<AppDataTable> {
   @override
   Widget build(BuildContext context) {
     return PaginatedDataTable(
+      onPageChanged: onPageChanged,
       sortColumnIndex: _columnIndex,
       sortAscending: _columnAscending,
       columns: buildDataColumns(labels),

@@ -8,70 +8,6 @@ import 'package:race_flutter/model/user.dart';
 
 import 'user_logic.dart';
 
-class UserDataSource extends AppDataSource {
-  final List<User> data;
-
-  UserDataSource(this.data);
-
-  void setData(List<List<Comparable<Object>>> rawData, int sortColumn,
-      bool sortAscending) {
-    notifyListeners();
-  }
-
-  static DataCell cellFor(Object data) {
-    String value;
-    if (data is DateTime) {
-      value =
-          '${data.year}-${data.month.toString().padLeft(2, '0')}-${data.day.toString().padLeft(2, '0')}';
-    } else {
-      value = data.toString();
-    }
-    return DataCell(Text(value));
-  }
-
-  @override
-  DataRow? getRow(int index) {
-    if (index >= data.length) {
-      return null;
-    }
-    return DataRow.byIndex(
-      index: index,
-      cells: [
-        DataCell(Text('${data[index].id}')),
-        DataCell(Text('${data[index].name}')),
-        DataCell(Text('${data[index].gender}')),
-        DataCell(Text('${data[index].roleName}')),
-        DataCell(Text('${data[index].unitName}')),
-        DataCell(Text('${data[index].phone}')),
-        DataCell(Row(
-          children: [
-            ElevatedButton(
-              onPressed: () {},
-              child: Text('修改'),
-            ),
-            ElevatedButton(
-              onPressed: () {},
-              child: Text('删除'),
-            ),
-            ElevatedButton(
-              onPressed: () {},
-              child: Text('权限'),
-            ),
-          ],
-        )),
-      ],
-    );
-  }
-
-  int get rowCount => data.length;
-
-  @override
-  bool get isRowCountApproximate => false;
-
-  @override
-  int get selectedRowCount => 0;
-}
-
 class UserPage extends StatelessWidget {
   UserPage({Key? key}) : super(key: key);
 
@@ -158,6 +94,8 @@ class UserPage extends StatelessWidget {
                   child: SizedBox(
                       width: 800,
                       child: AppDataTable(
+                        onPageChanged: (value) => {logic.pageUser((value/10 + 1) as int, 10)} ,
+                        onRowsPerPageChanged: (i) => print('onPageChanged -> $i'),
                           labels: ['ID', '姓名', '性别', '身份', '所属单位', '电话', '操作'],
                           // dataSource: UserDataSource(buildTestData()))),
                           dataSource: state.dataSource)),
