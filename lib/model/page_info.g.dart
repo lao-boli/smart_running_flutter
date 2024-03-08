@@ -1,5 +1,8 @@
 import 'package:race_flutter/generated/json/base/json_convert_content.dart';
 import 'package:race_flutter/model/page_info.dart';
+import 'package:race_flutter/model/role.dart';
+import 'package:race_flutter/model/train_record.dart';
+import 'package:race_flutter/model/unit.dart';
 import 'package:race_flutter/model/user.dart';
 
 PageInfo<T> $PageInfoFromJson<T>(Map<String, dynamic> json) {
@@ -158,6 +161,18 @@ M? pageInfoFromJsonSingle<M>(Map<String, dynamic> json) {
   print("genericType :$genericType");
   if ((User).toString() == genericType) {
     PageInfo<User> pagingData = PageInfo<User>.fromJson(json);
+    return pagingData as M;
+  }
+  if ((Role).toString() == genericType) {
+    PageInfo<Role> pagingData = PageInfo<Role>.fromJson(json);
+    return pagingData as M;
+  }
+  if ((Unit).toString() == genericType) {
+    PageInfo<Unit> pagingData = PageInfo<Unit>.fromJson(json);
+    return pagingData as M;
+  }
+  if ((TrainRecord).toString() == genericType) {
+    PageInfo<TrainRecord> pagingData = PageInfo<TrainRecord>.fromJson(json);
     return pagingData as M;
   }
   return PageInfo.fromJson(json) as M;

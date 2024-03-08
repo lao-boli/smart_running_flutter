@@ -1,6 +1,8 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:race_flutter/components/AppDataTable.dart';
+import 'package:race_flutter/model/role.dart';
+import 'package:race_flutter/model/unit.dart';
 import 'package:race_flutter/model/user.dart';
 import 'package:get/get.dart';
 import 'package:race_flutter/pages/user/user_from_page.dart';
@@ -93,6 +95,8 @@ class UserDataSource extends AppDataSource {
 class UserState {
   UserDataSource dataSource = UserDataSource([]);
   User formUser = User();
+  List<Unit>? unitList;
+  List<Role>? roleList;
 
   UserState() {
     dataSource = UserDataSource([]);

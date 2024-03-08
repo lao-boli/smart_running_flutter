@@ -6,6 +6,7 @@ import 'package:race_flutter/components/AppFormDropdown.dart';
 
 import 'package:race_flutter/components/AppTextField.dart';
 import 'package:race_flutter/components/AppTextFormField.dart';
+import 'package:race_flutter/model/role.dart';
 import 'package:race_flutter/model/unit.dart';
 import 'package:race_flutter/model/user.dart';
 import 'package:race_flutter/pages/user/user_logic.dart';
@@ -20,9 +21,7 @@ class UserFormPage extends StatefulWidget {
 class _UserFormPageState extends State<UserFormPage> {
   final logic = Get.put(UserLogic());
 
-  final state = Get
-      .find<UserLogic>()
-      .state;
+  final state = Get.find<UserLogic>().state;
 
   final _formKey = GlobalKey<FormState>();
   late TextEditingController _nameController;
@@ -60,10 +59,9 @@ class _UserFormPageState extends State<UserFormPage> {
                     padding: const EdgeInsets.all(8.0),
                     child: AppFormDropdown<String>(
                         model: state.formUser.gender,
-                        onSave: (gender) =>
-                        {
-                          state.formUser.gender = gender,
-                        },
+                        onSave: (gender) => {
+                              state.formUser.gender = gender,
+                            },
                         list: ['男', '女'],
                         hintText: '性别'),
                   ))
@@ -76,24 +74,24 @@ class _UserFormPageState extends State<UserFormPage> {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: AppFormDropdown<Unit>(
-                        onSave: (unit) =>
-                        {
-                          state.formUser.unitName = unit,
-                        },
-                        label: (unit) => unit.name??'',
-                        list: buildUnit(), hintText: '单位'),
+                        onSave: (unit) => {
+                              state.formUser.unitId = unit.unit_id,
+                            },
+                        label: (unit) => unit.name ?? '',
+                        list: state.unitList ?? [],
+                        hintText: '单位'),
                   )),
               Expanded(
                   flex: 1,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: AppFormDropdown<String>(
-                        onSave: (gender) =>
-                        {
-                          state.formUser.gender = gender,
-                        },
-                        label: (unit) => unit,
-                        list: ['管理员', '普通用户'], hintText: '权限'),
+                    child: AppFormDropdown<Role>(
+                        onSave: (role) => {
+                              state.formUser.roleId = role.roleId,
+                            },
+                        label: (role) => role.name,
+                        list: state.roleList ?? [],
+                        hintText: '权限'),
                   ))
             ],
           ),
@@ -101,9 +99,9 @@ class _UserFormPageState extends State<UserFormPage> {
             children: [
               Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: AppTextFormField(labelText: '联系电话'),
-                  ))
+                padding: const EdgeInsets.all(8.0),
+                child: AppTextFormField(labelText: '联系电话'),
+              ))
             ],
           ),
           Row(
@@ -147,5 +145,5 @@ List<Unit> buildUnit() {
   var b = Unit();
   b.name = 'hqu2';
   b.unitId = 'hquid2';
-  return [a,b];
+  return [a, b];
 }

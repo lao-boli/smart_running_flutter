@@ -20,7 +20,7 @@ ApiResponse<T> $ApiResponseFromJson<T>(Map<String, dynamic> json) {
     if (type.startsWith("PageInfo<")) {
       data = pageInfoFromJsonSingle<T>(json['data']);
     } else {
-      data = jsonConvert.convert<T>(json['data']);
+      data = JsonConvert.fromJsonAsT<T>(json['data']);
     }
   }
   if (data != null) {

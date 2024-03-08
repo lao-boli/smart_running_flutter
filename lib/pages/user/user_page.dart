@@ -19,6 +19,8 @@ class UserPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     logic.pageUser(1, 10);
+    logic.listUnit();
+    logic.listRole();
     return SingleChildScrollView(
       child: Container(
         child: Column(
