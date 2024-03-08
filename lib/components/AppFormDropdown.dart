@@ -5,9 +5,18 @@ class AppFormDropdown<T> extends StatefulWidget {
   final List<T> list;
   final String? hintText;
   final double? width;
+  final T? model;
+  final String Function(dynamic)? label;
+
+  final void Function(dynamic)? onSave;
 
   const AppFormDropdown(
-      {super.key, required this.list, this.hintText, this.width});
+      {super.key,
+      required this.list,
+      this.hintText,
+      this.width,
+      this.model,
+      this.onSave, this.label});
 
   @override
   State<AppFormDropdown> createState() => _AppDropdownMenuState<T>();
@@ -25,9 +34,12 @@ class _AppDropdownMenuState<T> extends State<AppFormDropdown> {
     // dropdownValue = widget.list.first;
     hintText = widget.hintText!;
     width = widget.width;
+    model = widget.model;
   }
+
   void _onDropDownItemSelected(T selectModel) {
     setState(() {
+      print(selectModel);
       model = selectModel;
     });
   }
@@ -35,6 +47,9 @@ class _AppDropdownMenuState<T> extends State<AppFormDropdown> {
   @override
   Widget build(BuildContext context) {
     return FormField<String>(
+      onSaved: (e) => {
+        widget.onSave??(model),
+      },
       builder: (FormFieldState<String> state) {
         return InputDecorator(
           decoration: InputDecoration(
@@ -49,7 +64,7 @@ class _AppDropdownMenuState<T> extends State<AppFormDropdown> {
               items: widget.list.map<DropdownMenuItem<T>>((value) {
                 return DropdownMenuItem(
                   value: value,
-                  child: Text(value as String),
+                  child: Text(widget.label != null ? widget.label!(value) : value as String),
                 );
               }).toList(),
               isExpanded: true,

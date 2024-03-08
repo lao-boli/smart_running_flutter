@@ -1,11 +1,19 @@
+import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:race_flutter/components/AppDataTable.dart';
 import 'package:race_flutter/model/user.dart';
+import 'package:get/get.dart';
+import 'package:race_flutter/pages/user/user_from_page.dart';
+import 'package:race_flutter/pages/user/user_logic.dart';
+import '../feedback/feedback_page.dart';
+
+typedef Consumer<T> = void Function(T value);
 
 class UserDataSource extends AppDataSource {
   List<User> data;
   int? total;
   int size = 10;
+  Consumer<User>? onUpdate;
 
   UserDataSource(this.data);
 
@@ -34,7 +42,7 @@ class UserDataSource extends AppDataSource {
   DataRow? getRow(int index) {
     print('$index, $total, ${data.length}');
     var i = index % size;
-    if (i >= data.length ) {
+    if (i >= data.length) {
       return null;
     }
     return DataRow.byIndex(
@@ -49,9 +57,14 @@ class UserDataSource extends AppDataSource {
         DataCell(Row(
           children: [
             ElevatedButton(
-              onPressed: () {},
+              // onPressed: () {Get.to(FeedbackPage());},
+              onPressed: () {
+                onUpdate!(data[i]);
+                Get.to(FormPage());
+              },
               child: Text('修改'),
             ),
+            // buildOpenContainer(),
             ElevatedButton(
               onPressed: () {},
               child: Text('删除'),
@@ -79,8 +92,51 @@ class UserDataSource extends AppDataSource {
 
 class UserState {
   UserDataSource dataSource = UserDataSource([]);
+  User formUser = User();
 
   UserState() {
     dataSource = UserDataSource([]);
+    dataSource.onUpdate = (user) => formUser = user;
+    }
+}
+
+class FormPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        centerTitle: true,
+        title: Text(
+          "hello",
+          style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontSize: 18),
+        ),
+      ),
+      body: Column(
+        children: [
+          UserFormPage(),
+        ],
+      ),
+    );
   }
+}
+
+OpenContainer<dynamic> buildOpenContainer() {
+  return OpenContainer(
+    closedColor: Colors.transparent,
+    closedElevation: 0.0,
+    transitionType: ContainerTransitionType.fade,
+    transitionDuration: const Duration(milliseconds: 150),
+    openColor: Colors.transparent,
+    //显示的布局
+    closedBuilder: (context, action) {
+      return ElevatedButton(
+        onPressed: action,
+        child: Text('修改'),
+      );
+    },
+    openBuilder: (context, action) {
+      return FormPage();
+    },
+  );
 }

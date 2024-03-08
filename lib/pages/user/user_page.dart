@@ -1,3 +1,4 @@
+import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:race_flutter/components/AppAutoComplete.dart';
@@ -5,6 +6,7 @@ import 'package:race_flutter/components/AppDataTable.dart';
 import 'package:race_flutter/components/AppDropdownMenu.dart';
 import 'package:race_flutter/components/AppTextField.dart';
 import 'package:race_flutter/model/user.dart';
+import 'package:race_flutter/pages/feedback/feedback_page.dart';
 
 import 'user_logic.dart';
 
@@ -109,22 +111,5 @@ class UserPage extends StatelessWidget {
     ;
   }
 
-  List<User> buildTestData() {
-    List<User> _data = [];
-    List.generate(100, (index) {
-      var user = User();
-      user.id = index;
-      user.name = 'test$index';
-      user.age = index % 50;
-      user.gender = index % 2 == 0 ? '男' : '女';
-      user.roleName = 'admin';
-      user.height = index * 1.0;
-      user.weight = index * 1.0;
-      user.athlete = index % 2 == 0;
-      user.unitName = 'hqu';
-      user.phone = '1333333333333';
-      _data.add(user);
-    });
-    return _data;
-  }
+
 }
