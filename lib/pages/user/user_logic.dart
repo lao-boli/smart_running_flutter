@@ -48,4 +48,11 @@ class UserLogic extends GetxController {
    print(unit);
    return unit;
   }
+
+  Role getUserRole(User user){
+    var role =  Role();
+    role.name = user.roleName;
+    role.roleId = user.roleId;
+    return role;
+  }
 }

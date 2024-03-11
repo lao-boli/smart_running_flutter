@@ -11,7 +11,7 @@ User $UserFromJson(Map<String, dynamic> json) {
   if (password != null) {
     user.password = password;
   }
-  final int? roleId = jsonConvert.convert<int>(json['roleId']);
+  final String? roleId = jsonConvert.convert<String>(json['roleId']);
   if (roleId != null) {
     user.roleId = roleId;
   }
@@ -95,7 +95,7 @@ extension UserExtension on User {
   User copyWith({
     int? id,
     String? password,
-    int? roleId,
+    String? roleId,
     String? roleName,
     String? salt,
     String? username,

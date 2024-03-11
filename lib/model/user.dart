@@ -7,7 +7,7 @@ export 'package:race_flutter/generated/json/user.g.dart';
 class User {
 	int? id;
 	String? password;
-	int? roleId;
+	String? roleId;
 	String? roleName;
 	String? salt;
 	String? username;

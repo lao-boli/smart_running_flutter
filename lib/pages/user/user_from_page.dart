@@ -25,14 +25,14 @@ class _UserFormPageState extends State<UserFormPage> {
 
   final _formKey = GlobalKey<FormState>();
   late TextEditingController _nameController;
-  late TextEditingController _genderController;
+  late TextEditingController _phoneController;
 
   @override
   void initState() {
     super.initState();
     _nameController = TextEditingController(text: state.formUser.name);
-    _genderController =
-        TextEditingController(text: state.formUser.gender.toString());
+    _phoneController =
+        TextEditingController(text: state.formUser.phone.toString());
   }
 
   @override
@@ -59,9 +59,10 @@ class _UserFormPageState extends State<UserFormPage> {
                     padding: const EdgeInsets.all(8.0),
                     child: AppFormDropdown<String>(
                         model: state.formUser.gender,
-                        onSave: (gender) => {
-                              state.formUser.gender = gender,
-                            },
+                        onSave: (gender) =>
+                        {
+                          state.formUser.gender = gender,
+                        },
                         list: ['男', '女'],
                         hintText: '性别'),
                   ))
@@ -74,10 +75,11 @@ class _UserFormPageState extends State<UserFormPage> {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: AppFormDropdown<Unit>(
-                      model: logic.getUserUnit(state.formUser),
-                        onSave: (unit) => {
-                              state.formUser.unitId = unit.unit_id,
-                            },
+                        model: logic.getUserUnit(state.formUser),
+                        onSave: (unit) =>
+                        {
+                          state.formUser.unitId = unit.unit_id,
+                        },
                         label: (unit) => unit.name ?? '',
                         list: state.unitList ?? [],
                         hintText: '单位'),
@@ -87,9 +89,11 @@ class _UserFormPageState extends State<UserFormPage> {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: AppFormDropdown<Role>(
-                        onSave: (role) => {
-                              state.formUser.roleId = role.roleId,
-                            },
+                        model: logic.getUserRole(state.formUser),
+                        onSave: (role) =>
+                        {
+                          state.formUser.roleId = role.roleId,
+                        },
                         label: (role) => role.name,
                         list: state.roleList ?? [],
                         hintText: '权限'),
@@ -100,9 +104,10 @@ class _UserFormPageState extends State<UserFormPage> {
             children: [
               Expanded(
                   child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: AppTextFormField(labelText: '联系电话'),
-              ))
+                    padding: const EdgeInsets.all(8.0),
+                    child: AppTextFormField(
+                      labelText: '联系电话', controller:_phoneController,),
+                  ))
             ],
           ),
           Row(

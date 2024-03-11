@@ -19,4 +19,9 @@ class Role {
 	String toString() {
 		return jsonEncode(this);
 	}
+
+	@override
+	bool operator ==(Object other) {
+		return other is Role && other.roleId == roleId;
+	}
 }
