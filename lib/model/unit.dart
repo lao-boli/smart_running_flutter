@@ -6,7 +6,6 @@ export 'package:race_flutter/generated/json/unit.g.dart';
 @JsonSerializable()
 class Unit {
 	int? id;
-	@JSONField(name: "unit_id")
 	String? unitId;
 	String? name;
 
@@ -20,4 +19,9 @@ class Unit {
 	String toString() {
 		return jsonEncode(this);
 	}
+
+	@override
+  bool operator ==(Object other) {
+    return other is Unit && other.unitId == unitId;
+  }
 }

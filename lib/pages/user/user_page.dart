@@ -21,6 +21,7 @@ class UserPage extends StatelessWidget {
     logic.pageUser(1, 10);
     logic.listUnit();
     logic.listRole();
+    print(state.unitList);
     return SingleChildScrollView(
       child: Container(
         child: Column(

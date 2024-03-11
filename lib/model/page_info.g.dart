@@ -158,7 +158,7 @@ extension PageInfoExtension on PageInfo {
 M? pageInfoFromJsonSingle<M>(Map<String, dynamic> json) {
   String type = M.toString();
   String genericType = type.substring(type.indexOf("<") + 1, type.length - 1);
-  print("genericType :$genericType");
+  // print("genericType :$genericType");
   if ((User).toString() == genericType) {
     PageInfo<User> pagingData = PageInfo<User>.fromJson(json);
     return pagingData as M;

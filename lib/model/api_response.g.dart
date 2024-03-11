@@ -15,7 +15,7 @@ ApiResponse<T> $ApiResponseFromJson<T>(Map<String, dynamic> json) {
   }
   T? data;
   String type = T.toString();
-  print("type:$type");
+  // print("type:$type");
   if (json['data'] != null) {
     if (type.startsWith("PageInfo<")) {
       data = pageInfoFromJsonSingle<T>(json['data']);

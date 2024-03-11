@@ -42,7 +42,7 @@ class UserDataSource extends AppDataSource {
 
   @override
   DataRow? getRow(int index) {
-    print('$index, $total, ${data.length}');
+    // print('$index, $total, ${data.length}');
     var i = index % size;
     if (i >= data.length) {
       return null;

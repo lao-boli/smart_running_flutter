@@ -7,7 +7,7 @@ Unit $UnitFromJson(Map<String, dynamic> json) {
   if (id != null) {
     unit.id = id;
   }
-  final String? unitId = jsonConvert.convert<String>(json['unit_id']);
+  final String? unitId = jsonConvert.convert<String>(json['unitId']);
   if (unitId != null) {
     unit.unitId = unitId;
   }
@@ -21,7 +21,7 @@ Unit $UnitFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> $UnitToJson(Unit entity) {
   final Map<String, dynamic> data = <String, dynamic>{};
   data['id'] = entity.id;
-  data['unit_id'] = entity.unitId;
+  data['unitId'] = entity.unitId;
   data['name'] = entity.name;
   return data;
 }

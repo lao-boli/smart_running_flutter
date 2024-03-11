@@ -74,6 +74,7 @@ class _UserFormPageState extends State<UserFormPage> {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: AppFormDropdown<Unit>(
+                      model: logic.getUserUnit(state.formUser),
                         onSave: (unit) => {
                               state.formUser.unitId = unit.unit_id,
                             },
