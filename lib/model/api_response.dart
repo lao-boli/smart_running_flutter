@@ -18,5 +18,9 @@ class ApiResponse<T> {
 	String toString() {
 		return jsonEncode(this);
 	}
+
+	bool isSucceed(){
+		return code == 20000;
+	}
 }
 

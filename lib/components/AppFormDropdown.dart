@@ -48,7 +48,7 @@ class _AppDropdownMenuState<T> extends State<AppFormDropdown> {
   Widget build(BuildContext context) {
     return FormField<String>(
       onSaved: (e) => {
-        widget.onSave??(model),
+        widget.onSave?.call(model),
       },
       builder: (FormFieldState<String> state) {
         return InputDecorator(

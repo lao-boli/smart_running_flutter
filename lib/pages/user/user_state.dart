@@ -15,6 +15,7 @@ class UserDataSource extends AppDataSource {
   List<User> data;
   int? total;
   int size = 10;
+  int pageNum = 1;
   Consumer<User>? onUpdate;
 
   UserDataSource(this.data);
@@ -62,6 +63,7 @@ class UserDataSource extends AppDataSource {
               // onPressed: () {Get.to(FeedbackPage());},
               onPressed: () {
                 onUpdate!(data[i]);
+                debugPrint("${data[i]}");
                 Get.to(FormPage());
               },
               child: Text('修改'),
@@ -97,6 +99,7 @@ class UserState {
   User formUser = User();
   List<Unit>? unitList;
   List<Role>? roleList;
+  Map<String, dynamic>? queryParams;
 
   UserState() {
     dataSource = UserDataSource([]);
@@ -118,7 +121,7 @@ class FormPage extends StatelessWidget {
       ),
       body: Column(
         children: [
-          UserFormPage(),
+          UserFormPage(type: FormType.update,),
         ],
       ),
     );

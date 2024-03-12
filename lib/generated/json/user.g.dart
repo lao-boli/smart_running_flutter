@@ -7,6 +7,10 @@ User $UserFromJson(Map<String, dynamic> json) {
   if (id != null) {
     user.id = id;
   }
+  final String? userId = jsonConvert.convert<String>(json['userId']);
+  if (userId != null) {
+    user.userId = userId;
+  }
   final String? password = jsonConvert.convert<String>(json['password']);
   if (password != null) {
     user.password = password;
@@ -73,6 +77,7 @@ User $UserFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> $UserToJson(User entity) {
   final Map<String, dynamic> data = <String, dynamic>{};
   data['id'] = entity.id;
+  data['userId'] = entity.userId;
   data['password'] = entity.password;
   data['roleId'] = entity.roleId;
   data['roleName'] = entity.roleName;
@@ -94,6 +99,7 @@ Map<String, dynamic> $UserToJson(User entity) {
 extension UserExtension on User {
   User copyWith({
     int? id,
+    String? userId,
     String? password,
     String? roleId,
     String? roleName,
@@ -112,6 +118,7 @@ extension UserExtension on User {
   }) {
     return User()
       ..id = id ?? this.id
+      ..userId = userId ?? this.userId
       ..password = password ?? this.password
       ..roleId = roleId ?? this.roleId
       ..roleName = roleName ?? this.roleName

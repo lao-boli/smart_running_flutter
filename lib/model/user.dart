@@ -6,6 +6,7 @@ export 'package:race_flutter/generated/json/user.g.dart';
 @JsonSerializable()
 class User {
 	int? id;
+	String? userId;
 	String? password;
 	String? roleId;
 	String? roleName;

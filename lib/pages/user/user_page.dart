@@ -7,6 +7,8 @@ import 'package:race_flutter/components/AppDropdownMenu.dart';
 import 'package:race_flutter/components/AppTextField.dart';
 import 'package:race_flutter/model/user.dart';
 import 'package:race_flutter/pages/feedback/feedback_page.dart';
+import 'package:race_flutter/pages/user/user_from_page.dart';
+import 'package:race_flutter/pages/user/user_state.dart';
 
 import 'user_logic.dart';
 
@@ -21,7 +23,6 @@ class UserPage extends StatelessWidget {
     logic.pageUser(1, 10);
     logic.listUnit();
     logic.listRole();
-    print(state.unitList);
     return SingleChildScrollView(
       child: Container(
         child: Column(
@@ -84,7 +85,10 @@ class UserPage extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: ElevatedButton(
-                        onPressed: () => {},
+                        onPressed: () => {
+                          state.formUser = User(),
+                          Get.to(FormPage())
+                        },
                         child: Text(
                           '添加用户',
                           style: TextStyle(fontSize: 20),
