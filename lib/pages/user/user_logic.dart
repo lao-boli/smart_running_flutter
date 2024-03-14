@@ -15,6 +15,15 @@ import 'user_state.dart';
 class UserLogic extends GetxController {
   final UserState state = UserState();
 
+  @override
+  void onReady() {
+    pageUser(1, 10);
+    listUnit();
+    listRole();
+    debugPrint("ready");
+    debugPrint("${state.unitList}");
+  }
+
   void pageUser(int pageNum, int pageSize,
       {Map<String, dynamic>? queryParams}) async {
 
@@ -35,7 +44,6 @@ class UserLogic extends GetxController {
 
   Future<ApiResponse> addUser(User user) async {
     var data = await requestClient.post('user/add', data: user);
-    print(data);
     return data;
   }
 
@@ -50,8 +58,9 @@ class UserLogic extends GetxController {
     var data = await requestClient.get<List<Unit>>(
       'unit/list',
     );
-    log("${data.data}");
     state.unitList = data.data;
+    update();
+    debugPrint("${state.unitList}");
   }
 
   void listRole() async {
@@ -60,7 +69,6 @@ class UserLogic extends GetxController {
     var data = await requestClient.get<List<Role>>(
       'role/list',
     );
-    log("${data.data}");
     state.roleList = data.data;
   }
 

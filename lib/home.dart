@@ -25,7 +25,7 @@ class _MyHomePageState extends State<MyHomePage>
   String get restorationId => 'home_page';
 
   late TabController _tabController;
-  RestorableInt tabIndex = RestorableInt(5);
+  RestorableInt tabIndex = RestorableInt(4);
 
   @override
   void restoreState(RestorationBucket? oldBucket, bool initialRestore) {

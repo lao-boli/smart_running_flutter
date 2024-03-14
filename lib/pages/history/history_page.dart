@@ -140,7 +140,7 @@ class HistoryPage extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: AppDropdownMenu(
-                        hintText: '性别', list: <String>['男', '女']),
+                        hintText: '性别', list:() => <String>['男', '女']),
                   ),
                 ),
                 Expanded(
@@ -150,7 +150,7 @@ class HistoryPage extends StatelessWidget {
                     child: AppDropdownMenu(
                         width: 300,
                         hintText: '是否运动员',
-                        list: <String>['是', '否']),
+                        list:() => <String>['是', '否']),
                   ),
                 ),
               ],

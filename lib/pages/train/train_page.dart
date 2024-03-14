@@ -156,7 +156,7 @@ class TrainPage extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: AppDropdownMenu(
-                        hintText: '性别', list: <String>['男', '女']),
+                        hintText: '性别', list:() => <String>['男', '女']),
                   ),
                 ),
                 Expanded(
@@ -165,7 +165,7 @@ class TrainPage extends StatelessWidget {
                     padding: const EdgeInsets.all(8.0),
                     child: AppDropdownMenu(
                         hintText: '手环',
-                        list: <String>['One', 'Two', 'Three', 'Four']),
+                        list:() => <String>['One', 'Two', 'Three', 'Four']),
                   ),
                 ),
               ],
@@ -199,7 +199,7 @@ class TrainPage extends StatelessWidget {
                     child: AppDropdownMenu(
                         width: 300,
                         hintText: '是否运动员',
-                        list: <String>['是', '否']),
+                        list:() => <String>['是', '否']),
                   ),
                 ),
               ],

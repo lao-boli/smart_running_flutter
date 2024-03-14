@@ -97,9 +97,9 @@ class UserDataSource extends AppDataSource {
 class UserState {
   UserDataSource dataSource = UserDataSource([]);
   User formUser = User();
-  List<Unit>? unitList;
+  List<Unit> unitList = [];
   List<Role>? roleList;
-  Map<String, dynamic>? queryParams;
+  Map<String, dynamic> queryParams = {};
 
   UserState() {
     dataSource = UserDataSource([]);
