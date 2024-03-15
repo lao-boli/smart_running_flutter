@@ -66,7 +66,17 @@ class UserPage extends StatelessWidget {
                   flex: 1,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: AppAutocomplete(
+                    child: AppTextField(
+                      onChanged: (value) => {
+                        if (value.isEmpty)
+                          {
+                            state.queryParams.remove('name'),
+                          }
+                        else
+                          {
+                            state.queryParams.addAll({'name': value}),
+                          }
+                      },
                       labelText: '姓名',
                     ),
                   ),
@@ -77,7 +87,7 @@ class UserPage extends StatelessWidget {
                       padding: const EdgeInsets.all(8.0),
                       child: GetBuilder<UserLogic>(builder: (logic) {
                         return state.unitList.isEmpty
-                            ? CircularProgressIndicator()
+                            ? const CircularProgressIndicator()
                             : AppDropdownMenu<Unit>(
                                 onSelected: (unit) => {
                                       state.queryParams
@@ -100,6 +110,21 @@ class UserPage extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: ElevatedButton(
+                        onPressed: () => {
+                              logic.pageUser(1, 10,
+                                  queryParams: state.queryParams)
+                            },
+                        child: Text(
+                          '查询用户',
+                          style: TextStyle(fontSize: 20),
+                        )),
+                  ),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ElevatedButton(
                         onPressed: () =>
                             {state.formUser = User(), Get.to(FormPage())},
                         child: Text(
@@ -116,8 +141,10 @@ class UserPage extends StatelessWidget {
                   child: SizedBox(
                       width: 800,
                       child: AppDataTable(
-                          onPageChanged: (value) =>
-                              {logic.pageUser((value / 10 + 1) as int, 10)},
+                          onPageChanged: (value) => {
+                                logic.pageUser((value / 10 + 1) as int, 10,
+                                    queryParams: state.queryParams)
+                              },
                           onRowsPerPageChanged: (i) =>
                               print('onPageChanged -> $i'),
                           labels: ['ID', '姓名', '性别', '身份', '所属单位', '电话', '操作'],

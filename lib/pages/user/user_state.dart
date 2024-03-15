@@ -13,12 +13,21 @@ typedef Consumer<T> = void Function(T value);
 
 class UserDataSource extends AppDataSource {
   List<User> data;
-  int? total;
+  int _total = 10;
   int size = 10;
   int pageNum = 1;
   Consumer<User>? onUpdate;
 
   UserDataSource(this.data);
+
+  int get total => _total;
+
+  set total(int value) {
+    if (_total != value) {
+      _total = value;
+      notifyListeners();
+    }
+  }
 
   void updateData(List<User> newData) {
     data = newData;
@@ -72,10 +81,6 @@ class UserDataSource extends AppDataSource {
             ElevatedButton(
               onPressed: () {},
               child: Text('删除'),
-            ),
-            ElevatedButton(
-              onPressed: () {},
-              child: Text('权限'),
             ),
           ],
         )),
